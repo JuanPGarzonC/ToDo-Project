@@ -17,7 +17,7 @@ create table ToDoDB.ToDoList (
     creationDate timestamp not null,
     expirationDate timestamp,
     User_idUser int not null,
-    primary key(id),
+    primary key(id,User_idUser),
     foreign key(User_idUser) references ToDoDB.User (id)
 );
 
@@ -25,4 +25,7 @@ alter table ToDoDB.User modify column name varchar(225) not null;
 alter table ToDoDB.User modify column lastName varchar(225) not null;
 alter table ToDoDB.User modify column email varchar(225) not null unique;
 alter table ToDoDB.User modify column password varchar(20) not null;
-alter table ToDoDB.User add primary key(User_idUser);
+alter table ToDoDB.ToDoList drop column id;
+alter table ToDoDB.ToDoList add column id int;
+alter table ToDoDB.ToDoList add primary key(id,User_idUser);
+alter table ToDoDB.ToDoList modify column id int auto_increment;
